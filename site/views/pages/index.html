@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Commonsense exercise</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/layout.css">
+</head>
+<body>
+  
+  <div class="container" id="index">
+
+    <form class="form-signin" v-on:submit.prevent="onSubmit">
+      <h2 class="form-signin-heading">Search your music...</h2>
+
+      <label for="inputSearch" class="sr-only">Search</label>
+      <input 
+        type="text" 
+        id="inputSearch" 
+        class="form-control" 
+        placeholder="Tracks, playlist, albums or artists" v-model="q" required autofocus>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="playlist" v-model="checkedOptions" @change="checkboxToggle"> Playlists
+        </label>
+        <label>
+          <input type="checkbox" value="album" v-model="checkedOptions" @change="checkboxToggle"> Albums
+        </label>
+        <label>
+          <input type="checkbox" value="artist" v-model="checkedOptions" @change="checkboxToggle"> Artists
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+    </form>
+
+    <div class="container" v-if="Object.keys(result).length !== 0">
+      <div v-if="result.tracks">
+        <h3>Tracks</h3>
+        <div class="card" v-for="item in result.tracks.items">
+          <div class="card-block">
+            <div class="media">
+              <img class="d-flex mr-3" v-bind:src="item.album.images[0].url" alt="album image" width="64" height="64">
+              <div class="media-body">
+                <h5 class="mt-0">{{ item.name }}</h5>
+                <h6>{{ item.type }}</h6>
+                <a v-bind:href="item.external_urls.spotify" class="card-link">Album</a>
+              </div> <!-- /media-body -->
+            </div> <!-- /media -->
+          </div> <!-- /card-block -->
+        </div> <!-- /card -->
+      </div> <!-- /tracks -->
+
+      <div v-if="result.playlists">
+        <h3>Playlists</h3>
+        <div class="card" v-for="item in result.playlists.items">
+          <div class="card-block">
+            <div class="media">
+              <img class="d-flex mr-3" v-bind:src="item.images[0].url" alt="album image" width="64" height="64">
+              <div class="media-body">
+                <h5 class="mt-0">{{ item.name }}</h5>
+                <h6>{{ item.type }}</h6>
+                <a v-bind:href="item.external_urls.spotify" class="card-link">Playlist</a>
+              </div> <!-- /media-body -->
+            </div> <!-- /media -->
+          </div> <!-- /card-block -->
+        </div> <!-- /card -->
+      </div> <!-- /playlists -->
+
+      <div v-if="result.albums">
+        <h3>Albums</h3>
+        <div class="card" v-for="item in result.albums.items">
+          <div class="card-block">
+            <div class="media">
+              <img class="d-flex mr-3" v-bind:src="item.images[0].url" alt="album image" width="64" height="64">
+              <div class="media-body">
+                <h5 class="mt-0">{{ item.name }}</h5>
+                <h6>{{ item.type }}</h6>
+                <a v-bind:href="item.external_urls.spotify" class="card-link">Album</a>
+              </div> <!-- /media-body -->
+            </div> <!-- /playlists -->
+          </div> <!-- /card-block -->
+        </div> <!-- /card -->
+      </div> <!-- /albums -->
+
+      <div v-if="result.artists">
+        <h3>Artists</h3>
+        <div class="card" v-for="item in result.artists.items">
+          <div class="card-block">
+            <div class="media">
+              <img class="d-flex mr-3" v-if="item.images.length > 0" v-bind:src="item.images[0].url" alt="album image" width="64" height="64">
+              <div class="media-body">
+                <h5 class="mt-0">{{ item.name }}</h5>
+                <h6>{{ item.type }}</h6>
+                <a v-bind:href="item.external_urls.spotify" class="card-link">Artist</a>
+              </div>
+            </div> <!-- /media -->
+          </div> <!-- /card-block -->
+        </div> <!-- /card-->
+      </div> <!-- /artists -->
+    </div> <!-- /container -->
+  </div> <!-- /container -->
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script type="text/javascript" src="js/components/index.js"></script>
+</body>
+</html>

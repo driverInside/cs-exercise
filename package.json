@@ -1,0 +1,32 @@
+{
+  "name": "cs-exercise",
+  "version": "1.0.0",
+  "description": "a common sense exercise",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "monitor": "nodemon index.js NODE_ENV='development'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/driverInside/cs-exercise.git"
+  },
+  "author": "Hiram E. Pérez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/driverInside/cs-exercise/issues"
+  },
+  "homepage": "https://github.com/driverInside/cs-exercise#readme",
+  "dependencies": {
+    "koa": "^2.4.1",
+    "koa-ejs": "^4.1.0",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.3.0",
+    "koa-static": "^4.0.2",
+    "mongoose": "^5.0.1",
+    "path": "^0.12.7",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  }
+}

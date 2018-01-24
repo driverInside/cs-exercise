@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Commonsense exercise</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/layout.css">
+</head>
+<body>
+  
+  <div class="container" id="requests">
+    
+    <% for(var i in requests) { %>
+      <div class="card">
+        <div class="card-block">
+          <h4 class="card-title"><%= requests[i]._updated_at %></h4>
+          <p class="card-text"><kbd><%= requests[i].url %> <kbd></p>
+          <a class="btn btn-primary" data-toggle="collapse" href="#collapseRequest-<%= requests[i]._id %>" aria-expanded="false" aria-controls="collapseRequest-<%= requests[i]._id %>">
+            Request
+          </a>
+          <a class="btn btn-primary" data-toggle="collapse" href="#collapseResponse-<%= requests[i]._id %>" aria-expanded="false" aria-controls="collapseResponse-<%= requests[i]._id %>">
+            Response
+          </a>
+          <div class="collapse" id="collapseRequest-<%= requests[i]._id %>">
+            <kbd><%= requests[i].request %> <kbd>
+          </div>
+          <div class="collapse" id="collapseResponse-<%= requests[i]._id %>">
+            <kbd><%= requests[i].response %> <kbd>
+          </div>
+        </div>
+      </div>
+    <%  } %>
+
+  </div> <!-- /container -->
+
+  
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
